@@ -29,7 +29,16 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
     """
     
     # Your code goes here (remove pass)
-    pass
+    if day<1 or day>31:
+        raise ValueError("Wrong day input!")
+    elif month<1 or month>12 or month>datetime.today().month:
+        raise ValueError("Wrong month input!")
+    elif year!=2020:
+        raise ValueError("Wrong year input!")
+
+    data=str(month)+"/"+str(day)+"/"+str(year)[2:4]
+    result = confirmed_cases.loc[confirmed_cases["Country/Region"]=="Poland", data].values[0]
+    return result
 
 
 def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
